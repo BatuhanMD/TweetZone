@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{%block content%}
+<ul>
+    {%for tweet in tweets  %}
+    <li> {{tweet.nickname}} : {{tweet.message}} </li>
+    {% endfor %}
+</ul>
+
+
+
+
+
+
+{%endblock%}
