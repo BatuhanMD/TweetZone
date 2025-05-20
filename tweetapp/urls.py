@@ -4,5 +4,7 @@ from . import views
 
 urlpatterns = [
     path('listtweet/', views.listtweet,name="ListTweet"),
-    path("addtweet/",views.addtweet,name="AddTweet")
+    path("addtweet/",views.addtweet,name="AddTweet"),
+    path('addtweetbyform/', views.addtweetbyform,name="AddTweetByForm"),
+    path('addtweetmodelform/', views.addtweetmodelform,name="AddTweetModelForm"),
 ]
