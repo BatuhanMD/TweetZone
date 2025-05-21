@@ -1,0 +1,12 @@
+{% block content %}
+    {% if user.is_authenticated %}
+        <h3> Welcome {{user.username}} </h3>
+    {% else %}
+        <form method="POST" action="{%url 'login'%}">
+            {% csrf_token %}
+            {{form}}
+            <button type="submit" class="btn btn-primary"> Login </button>
+        </form>
+    {% endif %}
+{% endblock content %}
+
