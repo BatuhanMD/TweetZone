@@ -10,11 +10,12 @@ def listtweet(request):
     tweet_dic = {"tweets":all_tweets}
     return render(request,"tweetapp/listtweet.html",context=tweet_dic)
 
+def login(request):
+    return redirect(reverse("login"))
 
 @login_required(login_url="/login") #Tweet atmak için login kıstası koyduk
 def addtweet(request):
     if request.POST:
-        
         message = request.POST["message"]
         models.Tweet.objects.create(username=request.user,message=message)
         return redirect(reverse("tweetapp:ListTweet"))

@@ -3,6 +3,7 @@ app_name ="tweetapp"
 from . import views
 
 urlpatterns = [
+    path("", views.login, name ="Home"),
     path('listtweet/', views.listtweet,name="ListTweet"),
     path("addtweet/",views.addtweet,name="AddTweet"),
     path('addtweetbyform/', views.addtweetbyform,name="AddTweetByForm"),
