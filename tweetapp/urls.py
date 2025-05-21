@@ -7,5 +7,6 @@ urlpatterns = [
     path("addtweet/",views.addtweet,name="AddTweet"),
     path('addtweetbyform/', views.addtweetbyform,name="AddTweetByForm"),
     path('addtweetmodelform/', views.addtweetmodelform,name="AddTweetModelForm"),
-    path("signup/",views.SignUpView.as_view(),name="SignUp")
+    path("signup/",views.SignUpView.as_view(),name="SignUp"),
+    path("deletetweet/<int:id>",views.deletetweet,name="DeleteTweet")
 ]
