@@ -1,15 +1,17 @@
 from django.shortcuts import render,redirect
 from . import models
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from tweetapp.forms import AddTweetForm, AddTweetModelForm
-# Create your views here.
-
-
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.views.generic import CreateView
 def listtweet(request):
     all_tweets = models.Tweet.objects.all()
     tweet_dic = {"tweets":all_tweets}
     return render(request,"tweetapp/listtweet.html",context=tweet_dic)
 
+
+@login_required(login_url="/login") #Tweet atmak için login kıstası koyduk
 def addtweet(request):
     if request.POST:
         nick = request.POST["nickname"]
@@ -57,3 +59,7 @@ def addtweetbyform(request):
         form = AddTweetModelForm()
         return render(request,"tweetapp/addtweetmodelform.html",context={"form":form})
     
+class SignUpView(CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login') #bellek tüketimini azaltmak için lazy
+    template_name = "registration/signup.html"
