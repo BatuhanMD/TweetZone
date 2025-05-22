@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block navbar %}{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background: linear-gradient(135deg, #4facfe, #00f2fe);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Segoe UI', sans-serif;
+    }
+    .login-card {
+        background-color: #fff;
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 400px;
+        margin-top: 50px;
+    }
+</style>
+
+<div class="login-card">
+    <h2 class="text-center text-primary mb-4">TweetZone Giriş</h2>
+
+    {% if user.is_authenticated %}
+        <div class="alert alert-success text-center">
+            Zaten giriş yaptınız: <strong>{{ user.username }}</strong>
+        </div>
+    {% else %}
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                <strong>Hata:</strong> Kullanıcı adı ya da şifre hatalı.
+            </div>
+        {% endif %}
+
+        <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+
+            {% for field in form %}
+                <div class="mb-3">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.errors %}
+                        <div class="text-danger small">{{ field.errors|striptags }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Giriş Yap</button>
+            </div>
+
+            <p class="text-center mt-3">
+                <small>Hesabınız yok mu? <a href="{% url 'tweetapp:SignUp' %}" class="text-decoration-none">Kayıt Ol</a></small>
+            </p>
+        </form>
+    {% endif %}
+</div>
+{% endblock %}
