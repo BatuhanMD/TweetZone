@@ -2,3 +2,54 @@
     border: 8px solid rgb(0, 0, 0);
     padding: 5px;
 }
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Navbar başlığı (TweetZone) */
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #ffffff !important;
+    
+}
+
+/* Navbar bağlantıları */
+.navbar-nav .nav-link {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #f1f1f1 !important;
+    transition: color 0.3s ease;
+    padding-top: 1.5rem;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #00f2fe !important;
+    text-decoration: underline;
+}
+
+/* Logout butonu görünümü */
+.btn-link.nav-link {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #f1f1f1 !important;
+}
+
+.btn-link.nav-link:hover {
+    color: #00f2fe !important;
+}
+
+/* Navbar'a hafif gölge */
+nav.navbar {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.card {
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}

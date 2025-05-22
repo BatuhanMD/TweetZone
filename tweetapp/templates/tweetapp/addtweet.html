@@ -1,24 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form action="" method="POST">
-    {% csrf_token %}
-    <div class="container"> 
-      <!--
-      <div class="mb-3">
-        <label for="nickname" class="form-label">Nickname</label>
-        <input class="form-control" id="nickname" name="nickname">
-      </div>
-      -->
-      <div class="mb-3">
-        <label for="message" class="form-label">Tweet</label>
-        <input type="text" class="form-control" id="message" name="message">
-      </div>
-      <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-      </div>
-      <button type="submit" class="btn btn-primary">Share Tweet</button>
-  </div>
-  </form>
-{% endblock  %}
+<div class="container d-flex justify-content-center align-items-center mt-5">
+    <div class="card shadow p-4" style="min-width: 400px; width: 100%; max-width: 600px; border-radius: 20px;">
+        <h3 class="text-center mb-4" style="font-weight: 600; color: #174c75;">Share a New Tweet 🐦</h3>
+        <form action="" method="POST">
+            {% csrf_token %}
+            
+            <div class="mb-3">
+                <label for="message" class="form-label">Tweet</label>
+                <input type="text" class="form-control" id="message" name="message" placeholder="What's on your mind?">
+            </div>
+
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">⌯⌲ Share Tweet</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
