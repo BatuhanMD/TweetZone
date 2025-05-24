@@ -2,10 +2,16 @@ from django.shortcuts import render, redirect
 from . import models
 from django.urls import reverse,reverse_lazy
 from tweetapp.forms import AddTweetForm,AddTweetModelForm
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required,user_passes_test
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import CreateView
+from django.http import HttpResponse
+from django.contrib.auth.models import User
 
+def is_moderator(user):
+    return user.groups.filter(name='Zonecu').exists()
+def is_admin(user):
+    return user.is_superuser or user.is_staff
 
 def listTweet(request):
     all_tweets = models.Tweet.objects.all()
@@ -46,9 +52,13 @@ def addTweetModelForm(request):
 @login_required    
 def deletetweet(request,id):
     tweet = models.Tweet.objects.get(pk=id)
-    if request.user == tweet.username:
+    tweet_owner = User.objects.get(username=tweet.username)
+    tweet_owner_is_admin = is_admin(tweet_owner)
+    if request.user == tweet.username or (is_moderator(request.user) and not tweet_owner_is_admin):
         models.Tweet.objects.filter(id=id).delete()
         return redirect("tweetapp:ListTweet")
+    else:
+        return HttpResponse("Bu tweeti silme yetkiniz yok.", status=403)
 
 
 
